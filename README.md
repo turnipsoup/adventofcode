@@ -11,6 +11,7 @@ These are my solutions to the 2020 Advent of Code! Languages and quality may ver
 
 ### Days
 
-[1](./1)
-[2](./2)
-[3](./3)
+- [1](./1)
+- [2](./2)
+- [3](./3)
+- [4](./4)
