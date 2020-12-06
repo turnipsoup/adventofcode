@@ -13,13 +13,10 @@ print(f"There are a total of {total_yes} yes answered questions.")
 total_shared_yes = 0
 
 for answer in answers:
-    print(answer)
     shared_ans = ""
 
     split_ans = [ x.strip() for x in answer.split("\n") if len(x) > 0 ]
-    print(split_ans)
     total_people = len(split_ans)
-    print(total_people)
 
     uniq_qs = set(answer)
 
