@@ -16,3 +16,4 @@ These are my solutions to the 2020 Advent of Code! Languages and quality may ver
 - [3](./3)
 - [4](./4)
 - [5](./5)
+- [6](./6)
