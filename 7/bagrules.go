@@ -1,7 +1,7 @@
 package main
 
 import (
-    "fmt"
+	"fmt"
 	"io/ioutil"
 	"strings"
 )
@@ -112,8 +112,15 @@ func uniqueValues(stringSlice []string) []string {
     return list
 }
 
+// Follows the "shiny gold" bag rule trail until we get to "contain no other bags.""
+func followGoldenTrail() {
+
+	//targetBag = "shiny gold"
+
+}
+
 // Part 1
-func partOne() {
+func partOne() ([]string, []Rule) {
 	// Load rules slice
 	rules := loadRules("./rules.txt")
 
@@ -137,32 +144,24 @@ func partOne() {
 	}
 
 	// Check which bag colors support supporters of shiny gold
-	// Basically iterate over an ever growing like like 4 times, then get unique
+	// Basically iterate over an ever growing list like 4 times, then get unique
 	// values from that list
 	for i := 0; i < 4; i++ {
 		supportsShinyGold = checkAllRulesForSupporters(parsedRulesArr, supportsShinyGold)
 	}
 
-	//totalValidBags := len(supportsShinyGold) + len(otherGoldSupporters)
-	fmt.Printf("There are a total of %d bags that support shiny gold bags.", len(uniqueValues(supportsShinyGold)))
+	uniqueSupporters := uniqueValues(supportsShinyGold)
+	fmt.Printf("There are a total of %d bags that support shiny gold bags.", len(uniqueSupporters))
 
+	return uniqueSupporters, parsedRulesArr
 }
 
-func partTwo() {
-	// Load rules slice
-	rules := loadRules("./rules.txt")
+func partTwo(rules []Rule, supporters []string) {
 
-	// Define globals
-	parsedRulesArr := []Rule{}
-	
-	// Iterate over the rules, parse them, and add parsed Rule structs to parsedRulesArr
-	for i := 0; i < len(rules); i++ {
-		parsedRule := parseRule(rules[i])
-		parsedRulesArr = append(parsedRulesArr, parsedRule)
-	}
 }
 
 func main() {
-	partOne()
+	supporters, rules := partOne()
+	partTwo(rules, supporters)
 	
 }
