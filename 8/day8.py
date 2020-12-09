@@ -1,11 +1,6 @@
 bootcode = [ x.strip() for x in open("input.txt", "r").readlines() ]
 
 # Part 1
-accumulator = 0
-next_inst = 0
-has_run = []
-no_dup_inst = True
-
 # Do the math with the accumulator
 def acc_work(split_inst, accumulator, next_inst):
     curr_acc_action = split_inst[1][0]
@@ -37,25 +32,50 @@ def nop_work(split_inst, next_inst):
     next_inst += 1
     return next_inst
 
+
+def check_prog(bootcode_list):
+    accumulator = 0
+    next_inst = 0
+    has_run = set()
+
+    while True:
+        if next_inst == len(bootcode_list):
+            return accumulator
+        if next_inst in has_run:
+            # Uncomment the following two lines for part 1
+            #print(f"The accumulator is at value {accumulator} right before it runs a duplicate instruction.")
+            #exit(0)
+            return None
+
+        has_run.add(next_inst)
+
+        split_inst = bootcode[next_inst].split()
+        curr_inst = split_inst[0]
+
+        if curr_inst == "acc":
+            accumulator, next_inst = acc_work(split_inst, accumulator, next_inst)
+        elif curr_inst == "jmp":
+            next_inst = jmp_work(split_inst, next_inst)
+        elif curr_inst == "nop":
+            next_inst = nop_work(split_inst, next_inst)
+
 # Part 1 execution
-while no_dup_inst:
-
-    has_run.append(next_inst)
-
-    split_inst = bootcode[next_inst].split()
-    curr_inst = split_inst[0]
-    curr_acc_action = (split_inst[1][0], split_inst[1][1:])
-
-    if curr_inst == "acc":
-        accumulator, next_inst = acc_work(split_inst, accumulator, next_inst)
-    elif curr_inst == "jmp":
-        next_inst = jmp_work(split_inst, next_inst)
-    elif curr_inst == "nop":
-        next_inst = nop_work(split_inst, next_inst)
-
-    if next_inst in has_run:
-        no_dup_inst = False
-
-print(f"The accumulator is at value {accumulator} right before it runs a duplicate instruction.")
+#check_prog(bootcode)
 
 # Part 2 execution
+
+for i in range(len(bootcode)):
+    program = bootcode[:]
+
+    if program[i].startswith("jmp"):
+        program[i] = program[i].replace("jmp", "nop")
+    elif program[i].startswith("nop"):
+        program[i] = program[i].replace("nop", "jmp")
+    
+    y = check_prog(program)
+
+    if y:
+        print(y)
+
+
+
