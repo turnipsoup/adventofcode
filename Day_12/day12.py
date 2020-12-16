@@ -14,8 +14,8 @@ cur_pos = {
 }
 
 w_pos = {
-    "Y": 0,
-    "X": 0
+    "Y": 1,
+    "X": 10
 }
 
 movements = []
