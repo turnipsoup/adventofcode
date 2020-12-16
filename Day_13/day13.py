@@ -31,7 +31,9 @@ for bus in bus_map:
 
 e_list = [ e_map[x] for x in e_map ]
 
+# Part 1
 for e in e_map:
     if e_map[e] == min(e_list):
         wait_time =  e_map[e] - stamp
         print(wait_time * e)
+
