@@ -11,7 +11,7 @@ export fn main() void = {
 	let inputs = strings::split(openFileAsString("input/day1.txt"), "\n");
 	let fuelSum = 0;
 	let allFuelSum = 0;
-
+##
 	for (let i = 0z; i<len(inputs); i += 1) {
 		if (len(inputs[i]) > 0) {
 			let fuel = getFuelCost(strconv::stoi(inputs[i])!);
