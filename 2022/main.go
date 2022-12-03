@@ -8,5 +8,6 @@ const (
 
 // Main :)
 func main() {
-	dayOne()
+	//dayOne()
+	dayTwo()
 }
