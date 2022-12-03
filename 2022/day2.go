@@ -164,6 +164,6 @@ func dayTwo() {
 		throwScore = throwScore + sc
 	}
 
-	fmt.Println("Day Two, Part One:", throwScore)
+	fmt.Println("Day Two, Part Two:", throwScore)
 
 }
