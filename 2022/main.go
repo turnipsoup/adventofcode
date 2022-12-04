@@ -10,5 +10,6 @@ const (
 func main() {
 	//dayOne()
 	//dayTwo()
-	dayThree()
+	//dayThree()
+	dayFour()
 }
