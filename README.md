@@ -5,9 +5,9 @@ The [Advent of Code](https://adventofcode.com) is an annual event where programm
 
 ## Completion Status
 
-| Year | Days Attempted | Stars Acquired |
-| --- | --- | --- |
-| 2020 | 16 | 16 |
-| 2021 | 3 | 5 |
-| 2022 | 6 | 11 | 
+| Year | Stars Acquired |
+| --- | --- |
+| 2020 | 16 |
+| 2021 | 5 |
+| 2022 | 11 | 
 
