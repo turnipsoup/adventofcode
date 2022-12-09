@@ -9,12 +9,12 @@ import (
 ////////////////////////////////////////////////////////////////
 
 // Checks if a tree is visible across a row
-func checkHorizontal(row string, treeIndex int) bool {
+func checkHorizontal(row []string, treeIndex int) bool {
 	rowLen := len(row)
 	b, err := strconv.Atoi(string(row[treeIndex]))
 
 	// Edges are visible by default
-	if treeIndex == rowLen-1 {
+	if treeIndex >= rowLen-1 {
 		return true
 	}
 
@@ -25,12 +25,11 @@ func checkHorizontal(row string, treeIndex int) bool {
 	for i := 0; i < rowLen; i++ {
 		if i != treeIndex {
 			a, err := strconv.Atoi(string(row[i]))
-
 			if err != nil {
 				fmt.Println(err)
 			}
 
-			if a >= b {
+			if a > b {
 				return false
 			}
 
@@ -46,35 +45,35 @@ func checkHorizontal(row string, treeIndex int) bool {
 
 ////////////////////////////////////////////////////////////////
 
-func checkVertical(input string, currentRow int, treeIndex int) bool {
-	rows := strings.Split(input, "\n")
-
-	for k, v := range rows {
+func checkVertical(splitput []string, currentRow int, treeIndex int) bool {
+	for _, v := range splitput {
 		rowLen := len(v)
-		a, err := strconv.Atoi(string(v[treeIndex]))
-		b, err := strconv.Atoi(string(string(input[currentRow])[treeIndex]))
+		rowArr := strings.Split(v, "")
+
+		// Edges are visible by default
+		if treeIndex >= rowLen-1 {
+			return true
+		}
+
+		if treeIndex == 0 {
+			return true
+		}
+
+		if len(rowArr) < 1 {
+			continue
+		}
+		a, err := strconv.Atoi(rowArr[treeIndex])
+		b, err := strconv.Atoi(string(string(splitput[currentRow])[treeIndex]))
 
 		if err != nil {
 			fmt.Println(err)
 		}
 
-		if k != currentRow {
-			// Edges are visible by default
-			if treeIndex == rowLen-1 {
-				return true
-			}
-
-			if treeIndex == 0 {
-				return true
-			}
-
-			if a >= b {
-				return false
-			}
-
+		if a > b {
+			return false
 		}
-	}
 
+	}
 	return true
 }
 
@@ -82,22 +81,20 @@ func checkVertical(input string, currentRow int, treeIndex int) bool {
 
 func dayEight() {
 	input := inputToString("day8")
-
+	splitput := strings.Split(input, "\n")
 	totalVisible := 0
 
-	for k, v := range strings.Split(input, "\n") {
-		for kt := range v {
-			if checkHorizontal(v, kt) {
+	for i := 0; i < len(splitput); i++ {
+		rowArr := strings.Split(splitput[i], "")
+		for t := 0; t < len(rowArr); t++ {
+			fmt.Println("Row:", i, "Char:", t, rowArr[t], rowArr)
+			if checkHorizontal(rowArr, t) {
 				totalVisible++
-				break
 			}
-
-			if checkVertical(v, k, kt) {
+			if checkVertical(splitput, i, t) {
 				totalVisible++
-				break
 			}
 		}
-
 	}
 
 	fmt.Println("Day Eight, Part One:", totalVisible)
