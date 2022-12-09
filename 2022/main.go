@@ -13,5 +13,7 @@ func main() {
 	//dayThree()
 	//dayFour()
 	//dayFive()
-	daySix()
+	//daySix()
+	//daySeven()
+	dayEight()
 }
